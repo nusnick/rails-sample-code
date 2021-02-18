@@ -1,0 +1,11 @@
+<div class = "normal-form" id = "create_user_wrapper">
+  <div class="row">
+    <div class='col-md-12'>
+      <ol class="breadcrumb">
+        <li><a href="<%= users_path %>"><%= t("users.list") %></a></li>
+        <li><%= t("users.create") %></li>
+      </ol>
+    </div>
+  </div>
+  <%= render "user_form", :user => @user %>
+</div>

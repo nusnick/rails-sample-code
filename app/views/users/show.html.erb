@@ -1,0 +1,146 @@
+<%= form_control_wrapper do %>
+  <ol class="breadcrumb">
+    <li><a href="<%= users_path %>"><%= t("users.list") %></a></li>
+    <li><%= t(".header") %></li>
+  </ol>
+<% end %>
+<%= form_control_wrapper do %>
+  <b><%= User.human_attribute_name(:fullname) %></b>
+  </br>
+  <%= @user.full_name %>
+<% end %>
+</br>
+
+<%= form_control_wrapper do %>
+  <b><%= User.human_attribute_name(:published) %></b>
+  </br>
+  <%= @user.published? ? t("common.published") : t("common.unpublished") %>
+<% end %>
+</br>
+<%= form_control_wrapper do %>
+  <b><%= User.human_attribute_name(:user_group) %></b>
+  </br>
+  <%= @user.roles[0].name.classify if @user.roles[0] %>
+<% end %>
+<%= form_control_wrapper do %>
+  <b><%= User.human_attribute_name(:avatar) %></b>
+  </br>
+  <%= image_tag @user.avatar_url, size: "100x100" %>
+<% end %>
+
+<%= form_control_wrapper do %>
+  <b><%= User.human_attribute_name(:karma) %></b>
+  </br>
+  <%= @user.karma %>
+<% end %>
+</br>
+
+<%= form_control_wrapper do %>
+  <b><%= User.human_attribute_name(:services) %></b>
+  </br>
+  <%= @user.services %>
+<% end %>
+<%= form_control_wrapper do %>
+  <fieldset class = "well white-bg">
+    <legend class = "border smaller-margin"><%= Contact.model_name.human %></legend>
+      <div class = "row no-margin">
+        <div class = "col-md-6">
+          <div class = "form-group">
+            <b><%= Contact.human_attribute_name(:city) %></b>
+            <br/>
+            <%= @user.contact.city %>
+          </div>
+
+          <div class = "form-group">
+            <b><%= Contact.human_attribute_name(:country) %></b>
+            <br/>
+            <%= IsoCountryCodes.find(@user.contact.country).name if @user.contact.country %>
+          </div>
+
+          <div class = "form-group">
+            <b><%= Contact.human_attribute_name(:phone) %></b>
+            <br/>
+            <%= @user.contact.phone %>
+          </div>
+
+          <div class = "form-group">
+            <b><%= User.human_attribute_name(:email) %></b>
+            <br/>
+            <%= @user.email %>
+          </div>
+
+          <div class = "form-group">
+            <b><%= Contact.human_attribute_name(:address) %></b>
+            <br/>
+            <%= @user.contact.address %>
+          </div>
+
+          <div class = "form-group">
+            <b><%= Contact.human_attribute_name(:skype) %></b>
+            <br/>
+            <%= @user.contact.skype %>
+          </div>
+        </div>
+
+        <div class = "col-md-6 pull-right">
+          <div class = "form-group">
+            <b><%= Contact.human_attribute_name(:facebook_link) %></b>
+            <br/>
+            <%= @user.contact.facebook_link %>
+          </div>
+
+          <div class = "form-group">
+            <b><%= Contact.human_attribute_name(:vkontakte_link) %></b>
+            <br/>
+            <%= @user.contact.vkontakte_link %>
+          </div>
+
+          <div class = "form-group">
+            <b><%= Contact.human_attribute_name(:twitter_link) %></b>
+            <br/>
+            <%= @user.contact.twitter_link %>
+          </div>
+
+          <div class = "form-group">
+            <b><%= Contact.human_attribute_name(:linkedin_link) %></b>
+            <br/>
+            <%= @user.contact.linkedin_link %>
+          </div>
+
+          <div class = "form-group">
+            <b><%= Contact.human_attribute_name(:website_link) %></b>
+            <br/>
+            <%= @user.contact.website_link %>
+          </div>
+        </div>
+      </div>
+<% end %>
+
+    <div class = "row">
+      <div class = "col-md-12">
+        <div class = "form-group">
+          <b><%= User.human_attribute_name(:about) %></b>
+          <br/>
+          <%= @user.about %>
+        </div>
+      </div>
+    </div>
+
+    <div class = "row">
+      <div class = "col-md-12">
+        <div class = "form-group">
+          <div class = "form-group">
+            <b><%= User.human_attribute_name(:additional_info) %></b>
+            <br/>
+            <%= @user.additional_info %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class = "row">
+      <div class='col-md-12'>
+        <a href="<%= edit_user_path(@user) %>" class="btn btn-primary" type="button"><%= t(".edit") %></a>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,1 @@
+DATE_FORMAT = "%b %d, %Y"

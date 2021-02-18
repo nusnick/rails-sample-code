@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-md-9">
+    <ol class="breadcrumb">
+      <li><%= t("solution_specializations.list") %></li>
+    </ol>
+  </div>
+  <div class="col-md-3 pull-right text-right">
+    <a type="button" class="btn btn-primary full-width" href="<%= new_solution_specialization_path %>"><%= t("solution_specializations.create") %></a>
+  </div>
+</div>
+<div class="row">
+  <div class='col-md-12'>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <% if @solution_specs.total_entries %>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <th class='solution-title-column'>
+                <%= sortable_column(t(".spec_title"), :title, @sort_column, @direction,params, 'spec') %>
+                <%= sort_icon(:title, @sort_column, @direction) %>
+              </th>
+              <th>
+                 <%= sortable_column(t(".author"), :author, @sort_column, @direction, params, 'spec') %>
+                <%= sort_icon(:author, @sort_column, @direction) %>
+              </th>
+              <th>
+                <%= sortable_column(t(".created_at"), :created_at, @sort_column, @direction, params, 'spec') %>
+                <%= sort_icon(:created_at, @sort_column, @direction) %>
+              </th>
+              <th>
+                <%= sortable_column(t(".status"), :published, @sort_column, @direction, params, 'spec') %>
+                <%= sort_icon(:published, @sort_column, @direction) %>
+              </th>
+              <th>
+                Action
+              </th>
+            </thead>
+            <tbody>
+              <% @solution_specs.each do |solution| %>
+                <tr>
+                  <td>
+                    <%= display_long_string(solution.title, 30) %>
+                  </td>
+                  <% name = solution.author.name if solution.author %>
+                  <td><%= display_long_string(name,30) %></td>
+                  <td><%= solution.created_at.strftime(DATE_FORMAT) %></td>
+                  <td><%= solution.published? ? t("common.published") : t("common.unpublished") %></td>
+                  <td>
+                    <%= link_to '', solution_specialization_path(solution), :class => "glyphicon glyphicon-th-large", :title => t(".title.view") %>
+
+                    <%= link_to '', edit_solution_specialization_path(solution), :class => "glyphicon glyphicon-pencil edit-spec", :title => t(".title.edit"), :id => "btn-edit-#{solution.id}" %>
+                    <% action = solution.published? ? t("common.unpublish") : t("common.publish") %>
+                    <% text_color = !solution.published? ? 'text-muted' : '' %>
+                    <%= link_to '', {:action => :toggle_status, :id => solution.id, :page => @page}, :method => :put, :class => "glyphicon glyphicon-ok #{text_color} toggle-status", data: {:confirm => t(".confirm.#{action}", :name => solution.title)}, :title => t(".title.#{action}") %>
+                    <%= link_to '', {:action => :destroy, :id => solution.id, :page => @page}, :method => :delete, :class => "glyphicon glyphicon-trash delete-spec", :title => t(".title.delete"), data: {:confirm => t(".confirm.delete", :name => solution.title) } %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+      <% if @solution_specs.total_entries > 0 %>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-md-6">
+              <div class='pagination-info'>
+                 <%= page_entries_info(@solution_specs) if @solution_specs.length > 0 %>
+              </div>
+            </div>
+            <div class="col-md-6 pull-right text-right">
+              <%= will_paginate(@solution_specs, renderer: BootstrapPagination::Rails, bootstrap: 3) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

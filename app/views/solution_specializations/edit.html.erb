@@ -1,0 +1,9 @@
+<div class="row">
+  <div class='col-md-12'>
+    <ol class="breadcrumb">
+      <li><a href="<%= solution_specializations_path %>"><%= t("solution_specializations.list") %></a></li>
+      <li><%= t(".header") %></li>
+    </ol>
+  </div>
+</div>
+<%= render :partial => "solution_spec_form", :locals => {:solution_spec => @solution_specialization} %>

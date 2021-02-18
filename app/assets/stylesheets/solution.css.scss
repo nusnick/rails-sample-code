@@ -1,0 +1,22 @@
+.sort-icon{
+  float: right;
+}
+.solution-title-column{
+  width: 250px;
+}
+
+.task-field{
+  input[type=text]{
+    margin-bottom: 5px;
+  }
+  a.action-field-link{
+    margin-top: 5px;
+    display: inline-block;
+  }
+}
+
+fieldset[disabled] {
+  a.action-field-link, .token-input-delete-token-facebook{
+    display: none;
+  }
+}

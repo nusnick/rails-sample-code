@@ -1,0 +1,8 @@
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="/"><%= t(".dashboard") %></a></li>
+  <% if current_user.is_admin? %>
+  	<li><a href="<%= users_path %>"><%= t(".user_management") %></a></li>
+    <li><a href="<%= solutions_path %>"><%= t(".solution_management") %></a></li>
+    <li><a href="<%= solution_specializations_path %>"><%= t(".solution_spec_management") %></a></li>
+  <% end %>
+</ul>

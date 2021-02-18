@@ -1,0 +1,99 @@
+<%= form_errors(solution) %>
+<%= simple_form_for(solution, :html => {:role => 'form', :class => "solution-form" }) do |f| %>
+  <fieldset>
+    <%= form_control_wrapper do %>
+      <%= f.input :title, input_html: { autofocus: true } %>
+    <% end %>
+    <%= form_control_wrapper do %>
+      <div class='form-group'>
+        <%= f.label :published, :class => "control-label" %>
+        <div class='row radio no-margin-top'>
+          <div class='col-md-2'>
+            <label>
+              <%= f.radio_button :published, 1, :checked => solution.published? %>
+              <%= t(".published") %>
+            </label>
+          </div>
+          <div class='col-md-2'>
+            <label>
+              <%= f.radio_button :published, 0, :checked => !solution.published? %>
+              <%= t(".unpublished") %>
+            </label>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= form_control_wrapper do %>
+      <%= f.input :favor %>
+    <% end %>
+
+    <%= form_control_wrapper do %>
+      <div class="form-group">
+        <%= f.label :tasks %>
+        <% if solution.tasks.length == 0 %>
+          <div class="row fields task-field">
+            <div class="col-md-10 col-md-offset-1">
+              <input class="form-control valid" id="solution_tasks_attributes_0_title" name="solution[tasks_attributes][0][title]" placeholder="<%= t('.placeholder.task_title') %>" type="text">
+            </div>
+            <div class="col-md-1">
+              <input id="solution_tasks_attributes_0__destroy" name="solution[tasks_attributes][0][_destroy]" type="hidden"><a class="action-field-link" href="#" onclick="remove_fields(this); return false;"><%= t(".remove_task") %></a>
+            </div>
+          </div>
+        <% end %>
+        <%= f.fields_for :tasks do |builder| %>
+          <%= render "task_fields", :f => builder %>
+        <% end %>
+        <div class="col-md-offset-1"><%= link_to_add_fields t(".add_task"), f, :tasks %></div>
+      </div>
+    <% end %>
+    <%= form_control_wrapper(class: "col-md-6") do %>
+      <div class="form-group">
+        <%= f.label :specializations, class: "control-label" %>
+        <%= f.hidden_field :specialization_tokens , specs: solution.specializations.to_json %>
+      </div>
+    <% end %>
+    <div class = "row">
+      <br />
+      <div class = "col-md-2">
+        <div>
+          <div class = "inline-block">
+            <%= image_tag solution.image.url, size: "100x100", :class => 'solution-image' %>
+          </div>
+          <div class = "inline-block">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div>
+          <span class = "btn btn-primary fileinput-button">
+            <%= t(".change_image") %>
+            <%= f.file_field :image %>
+          </span>
+        </div>
+        <div>
+          <div class='inline-block' id='file-name'></div>
+          <div class='inline-block'>
+            <a type="button" class="close hidden" id="btn-remove-solution-image">&times;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <%= form_control_wrapper do %>
+      <%= f.input :teaser, as: :text, :input_html => {rows: 5} %>
+    <% end %>
+    <%= form_control_wrapper do %>
+      <%= f.input :full_text, as: :text, :input_html => {rows: 5} %>
+    <% end %>
+    <%= form_control_wrapper(class: "col-md-6") do %>
+      <div class="form-group">
+        <%= f.label :author, class: "control-label" %>
+        <%= f.text_field :author_id, value: (solution.author.name if solution.author) %>
+      </div>
+    <% end %>
+  </fieldset>
+  <%= form_control_wrapper do %>
+      <%= f.submit t(".save"), class: "btn btn-primary" %>
+      <%= button_tag t(".cancel"), type: "button", class: "btn btn-default", onclick: "window.location='#{solutions_path}'" %>
+  <% end %>
+<% end %>

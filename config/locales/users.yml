@@ -1,0 +1,31 @@
+en:
+  users:
+    list: "User List"
+    create: "Create New User"
+    index:
+      email: "Email"
+      fullname: "Fullname"
+      status: "Status"
+      group: "Group"
+      title:
+        edit: "Edit User Profile"
+        publish: "Publish User"
+        unpublish: "Unpublish User"
+        delete: "Delete User"
+        view: "View User Details"
+      confirm:
+        publish: "Are you sure you want to publish user %{name}?"
+        unpublish: "Are you sure you want to unpublish user %{name}?"
+        delete: "Are you sure you want to delete user %{name}?"
+      no_user: "There is no user"
+    edit:
+      header: "Edit User Profile"
+    show:
+      header: "View User Profile"
+      edit: "Edit"
+    user_form:
+      contacts: "Contacts"
+      edit: "Edit"
+      change_avatar: "Change"
+      published: "Published"
+      unpublished: "Unpublished"

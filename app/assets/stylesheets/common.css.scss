@@ -1,0 +1,75 @@
+.normal-form {
+  label {
+    font-weight: normal;
+  }
+
+  form .row {
+    padding-top: 5px;
+  }
+  .user-avatar{
+    margin-bottom: 5px;
+  }
+  #btn-remove-avatar{
+    margin-bottom: -7px;
+  }
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+legend.border {
+  font-size: 1.2em !important;
+  text-align: left !important;
+  width:auto;
+  padding:0 10px;
+  border-bottom:none;
+}
+
+.white-bg {
+  background-color: white;
+}
+
+legend.smaller-margin {
+  margin-bottom: 0;
+}
+
+.row.no-margin {
+  margin: 0;
+}
+
+span.required {
+  color: red;
+}
+
+label.error {
+  color: red;
+}
+
+.form-center{
+  margin-left:40%;
+}
+
+textarea{
+  resize: vertical;
+}
+.btn.full-width{
+  width: 100%
+}
+
+.hidden{
+  display: none;
+}
+.pagination-info{
+  margin-top: 25px;
+}
+.no-margin-top{
+  margin-top: 0px;
+}
+.margin-left-mini{
+  margin-left: 10px;
+}

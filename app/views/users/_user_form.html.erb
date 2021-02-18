@@ -1,0 +1,158 @@
+<% if !user.errors.empty? %>
+  <div class="row">
+    <div class='col-md-12'>
+      <div class="alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+         <% user.errors.full_messages.each do |m| %>
+            <%= m %>.
+          </br>
+         <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= simple_form_for(user, role: "form", html: {:class => "user-form"} ) do |f| %>
+   <fieldset>
+    <%= form_control_wrapper(class: "col-md-6") do %>
+      <%= f.input :full_name, input_html: { autofocus: true } %>
+    <% end %>
+    <%= form_control_wrapper do %>
+      <div class='form-group'>
+        <%= f.label :published, :class => "control-label" %>
+        <div class='row radio no-margin-top'>
+          <div class='col-md-2'>
+            <label>
+              <%= f.radio_button :published, 1, :checked => user.published? %>
+              <%= t(".published") %>
+            </label>
+          </div>
+          <div class='col-md-2'>
+            <label>
+              <%= f.radio_button :published, 0, :checked => !user.published? %>
+              <%= t(".unpublished") %>
+            </label>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <% unless @user.id == current_user.id %>
+      <%= form_control_wrapper(class: "col-md-6") do  %>
+        <div class="form-group">
+          <%= f.label :user_group %>
+          <%= f.select :role, options_for_select(@roles.collect{|r| [r.name.classify, r.id]}, @user.role), {}, :class => "form-control" %>
+        </div>
+      <% end %>
+    <% end %>
+    <div class = "row">
+      <div class = "col-md-2">
+        <div>
+          <div class = "inline-block">
+            <%= image_tag @user.avatar_url, size: "100x100", :class => 'user-avatar' %>
+          </div>
+          <div class = "inline-block">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div>
+          <span class = "btn btn-primary fileinput-button">
+            <%= t(".change_avatar") %>
+            <%= f.file_field :avatar %>
+          </span>
+        </div>
+        <div>
+          <div class='inline-block' id='file-name'></div>
+          <div class='inline-block'>
+            <a type="button" class="close hidden" id="btn-remove-avatar">&times;</a>
+          </div>
+        </div>
+
+        <br/>
+      </div>
+    </div>
+
+    <%= form_control_wrapper(class: "col-md-6") do %>
+      <%= f.input :karma %>
+    <% end %>
+
+    <%= form_control_wrapper do %>
+      <%= f.input :services, as: :text, :input_html => {rows: 5} %>
+    <% end %>
+    <div class = "row">
+      <div class='col-md-12'>
+        <fieldset class = "well white-bg">
+          <legend class = "border smaller-margin"><%= t(".contacts") %></legend>
+          <div class = "row no-margin">
+            <%= f.fields_for :contact do |c| %>
+
+              <div class = "row no-margin">
+                <div class = "col-md-6">
+                  <%= form_control_wrapper do %>
+                    <%= c.input :city %>
+                  <% end %>
+                  <%= form_control_wrapper do %>
+                    <div class="form-group">
+                      <%= c.label :country %>
+                      <%= c.country_select("country", ["us"], {iso_codes: true}, {class: "form-control"}) %>
+                    </div>
+                  <% end %>
+                  <%= form_control_wrapper do %>
+                    <%= c.input :phone %>
+                  <% end %>
+                  <%= form_control_wrapper do %>
+                    <%= f.input :email, required: true %>
+                  <% end %>
+                  <%= form_control_wrapper do %>
+                    <%= c.input :address %>
+                  <% end %>
+                  <%= form_control_wrapper do %>
+                    <%= c.input :skype %>
+                  <% end %>
+                </div>
+
+                <div class = "col-md-6 pull-right">
+                  <%= form_control_wrapper do %>
+                    <%= c.input :facebook_link, as: :string %>
+                  <% end %>
+                  <%= form_control_wrapper do %>
+                    <%= c.input :vkontakte_link, as: :string %>
+                  <% end %>
+                  <%= form_control_wrapper do %>
+                    <%= c.input :twitter_link, as: :string %>
+                  <% end %>
+                  <%= form_control_wrapper do %>
+                    <%= c.input :linkedin_link, as: :string %>
+                  <% end %>
+                  <%= form_control_wrapper do %>
+                    <%= c.input :website_link, as: :string %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <%= form_control_wrapper do %>
+      <%= f.input :about, as: :text, :input_html => {rows: 5} %>
+    <% end %>
+
+    <%= form_control_wrapper do %>
+      <%= f.input :additional_info, as: :text, :input_html => {rows: 5} %>
+    <% end %>
+    <br/>
+    <div class = "row">
+      <div class='col-md-12'>
+        <% if user.new_record? %>
+          <%= button_tag t(".create"), class: "btn btn-primary" %>
+        <% else %>
+          <%= button_tag t(".update"), class: "btn btn-primary" %>
+        <% end %>
+        <%= button_tag t(".cancel"), {class: "btn btn-default", onclick: "location='#{users_path}'; return false;"} %>
+      </div>
+    </div>
+   </fieldset>
+<% end %>

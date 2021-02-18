@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t("layouts.site_title") %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <%= render "layouts/welcomebar" %>
+    <div class="row">
+      <div class="col-md-2">
+        <%= render "layouts/dashboard" %>
+      </div>
+      <div class="col-md-10">
+        <div class = "row">
+          <%= render "layouts/flash" %>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
+    <footer>
+      <br />
+    </footer>
+  </div>
+</body>
+</html>

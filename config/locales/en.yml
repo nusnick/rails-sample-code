@@ -1,0 +1,98 @@
+en:
+  common:
+    published: "Published"
+    unpublished: "Unpublished"
+    publish: "publish"
+    unpublish: "unpublish"
+    publish_user: "Publish User"
+    unpublish_user: "Unpublish User"
+    action: "Action"
+    welcome: "Welcome to Sample System!"
+    solutions: "Solutions"
+    specs: "Solution Specializations"
+    status: "Publishing status"
+    image: "Image"
+    title: "Title"
+    author: "Author"
+    edit: "Edit"
+  layouts:
+    site_title: "Sample"
+    dashboard:
+      dashboard: "Dashboard"
+      user_management: "User Mgmt"
+      solution_management: "Solution Mgmt"
+      solution_spec_management: "Solution Spec Mgmt"
+    welcomebar:
+      sign_out: "Sign Out"
+  users:
+    created_successfully: "User has been created successfully."
+    cannot_delete_superadmin: "Cannot delete SuperAdmin user."
+    cannot_published: "Cannot publish this user."
+    cannot_unpublished: "Cannot unpublish this user."
+    deleted_successfully: "User has been deleted successfully."
+    published_successfully: "User has been published successfully."
+    unpublished_successfully: "User has been unpublished successfully."
+    error_on_karma: "must be from 0 to 5000"
+    avatar_file_size_validation: "must be less than 2 megabytes in size"
+    cannot_delete_user: "Cannot delete user because he (she) has one or many solutions (or solution specializations)."
+    update_profile_successfully: "Your profile has been updated successfully."
+    update_user_successfully: "User has been updated successfully."
+  solutions:
+    published_successfully: "Solution has been published successfully."
+    unpublished_successfully: "Solution has been unpublished successfully."
+    deleted_successfully: "Solution has been deleted successfully."
+    created_successfully: "Solution has been created successfully."
+    updated_successfully: "Solution has been updated successfully."
+    image_file_size_validation: "must be less than 2 megabytes in size"
+
+  solution_specs:
+    default_title: "All solution specifications"
+    published_successfully: "Solution specialization has been published successfully."
+    unpublished_successfully: "Solution specialization has been unpublished successfully."
+    deleted_successfully: "Solution specialization has been deleted successfully."
+    created_successfully: "Solution specialization has been created successfully."
+    updated_successfully: "Solution specialization has been updated successfully."
+    cannot_unpublished: "Cannot unpublish solution specialization because it belongs to one or many solutions."
+    cannot_delete: "Cannot delete solution specialization because it belongs to one or many solutions."
+
+  activerecord:
+    models:
+      user: "User"
+      contact: "Contact"
+    attributes:
+      user:
+        fullname: "Full name"
+        published: "Publishing status"
+        user_group: "User group"
+        karma: "Karma"
+        services: "Services"
+        email: "Email"
+        about: "About"
+        additional_info: "Additional Info"
+        avatar: "Avatar"
+      contact:
+        city: "City"
+        country: "Country"
+        phone: "Phone"
+        address: "Address"
+        skype: "Skype"
+        facebook_link: "Facebook Link"
+        vkontakte_link: "Vkontakte Link"
+        twitter_link: "Twitter Link"
+        linked_link: "Linked Link"
+        website_link: "Website Link"
+      solution:
+        title: "Title"
+        published: "Publishing status"
+        favor: "Favor"
+        tasks: "Solution tasks"
+        specializations: "Specializations"
+        teaser: "Teaser"
+        full_text: "Full text"
+        author: "Author"
+        image: "Image"
+      solution_specialization:
+        title: "Title"
+        published: "Publishing status"
+      task:
+        title: "Title"

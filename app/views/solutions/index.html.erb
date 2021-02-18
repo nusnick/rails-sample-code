@@ -1,0 +1,106 @@
+<%= javascript_include_tag 'solutions' %>
+<div class="row">
+  <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li><%= t("solutions.list") %></li>
+    </ol>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <%= form_tag(solutions_path, method: "get") do %>
+    <%= hidden_field_tag(:spec_id, "#{@spec.id if @spec}", spec: "#{@spec.title if @spec}") %>
+    <% params.each do |key, value| %>
+      <% if key.to_s != "spec_id" && key.to_s != "page" %>
+        <%= hidden_field_tag(key, value)%>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-3">
+    <%= submit_tag(t(".filter"), class: "from-control btn btn-primary") %>
+  </div>
+  <div class="col-md-3 pull-right text-right">
+    <a type="button" class="btn btn-primary " href="<%= new_solution_path %>"><%= t("solutions.create") %></a>
+  </div>
+<% end %>
+</div>
+</br>
+<div class="row">
+  <div class='col-md-12'>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <% if @solutions.total_entries %>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <th class='solution-title-column col-md-4'>
+                <%= sortable_column(t(".solution_title"), :title, @sort_column, @direction,params) %>
+                <%= sort_icon(:title, @sort_column, @direction) %>
+              </th>
+              <th>
+                 <%= sortable_column(t(".author"), :author, @sort_column, @direction, params) %>
+                <%= sort_icon(:author, @sort_column, @direction) %>
+              </th>
+              <th class="col-md-1">
+                 <%= sortable_column(t(".favor"), :favor, @sort_column, @direction, params) %>
+                <%= sort_icon(:favor, @sort_column, @direction) %>
+              </th>
+              <th>
+                <%= sortable_column(t(".created_at"), :created_at, @sort_column, @direction, params) %>
+                <%= sort_icon(:created_at, @sort_column, @direction) %>
+              </th>
+              <th>
+                <%= sortable_column(t(".last_edited_at"), :updated_at, @sort_column, @direction, params) %>
+                <%= sort_icon(:updated_at, @sort_column, @direction) %>
+              </th>
+              <th>
+                <%= sortable_column(t(".status"), :published, @sort_column, @direction, params) %>
+                <%= sort_icon(:published, @sort_column, @direction) %>
+              </th>
+              <th>
+                <%= t("common.action") %>
+              </th>
+            </thead>
+            <tbody>
+              <% @solutions.each do |solution| %>
+                <tr>
+                  <td>
+                    <%= display_long_string(solution.title,30) %>
+                  </td>
+                  <% name = solution.author.name if solution.author %>
+                  <td><%= display_long_string(name,25) %></td>
+                  <td><%= display_long_string(solution.favor,10) %></td>
+                  <td><%= solution.created_at.strftime(DATE_FORMAT) %></td>
+                  <td><%= solution.updated_at.strftime(DATE_FORMAT) %></td>
+                  <td><%= solution.published? ? t("common.published") : t("common.unpublished") %></td>
+                  <td>
+                    <%= link_to '', solution_path(solution), :class => "glyphicon glyphicon-th-large", :title => t(".title.view") %>
+
+                    <%= link_to '', edit_solution_path(solution), :class => "glyphicon glyphicon-pencil update-solution", :title => t(".title.edit"), :id => "btn-edit-#{solution.id}" %>
+                    <% action = solution.published? ? t("common.unpublish") : t("common.publish") %>
+                    <% text_color = !solution.published? ? 'text-muted' : '' %>
+                    <%= link_to '', {:action => :toggle_status, :id => solution.id, :page => @page}, :method => :put, :class => "glyphicon glyphicon-ok #{text_color} toggle-status", data: {:confirm => t(".confirm.#{action}", :name => solution.title)}, :title => t(".title.#{action}") %>
+                    <%= link_to '', {:action => :destroy, :id => solution.id, :page => @page}, :method => :delete, :class => "glyphicon glyphicon-trash delete-solution", :title => t(".title.delete"), data: {:confirm => t(".confirm.delete", :name => solution.title) } %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+      <% if @solutions.total_entries > 0 %>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-md-6">
+              <div class='pagination-info'>
+                <%= page_entries_info(@solutions) if @solutions.length > 0 %>
+              </div>
+            </div>
+            <div class="col-md-6 pull-right text-right">
+              <%= will_paginate(@solutions, renderer: BootstrapPagination::Rails, bootstrap: 3) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

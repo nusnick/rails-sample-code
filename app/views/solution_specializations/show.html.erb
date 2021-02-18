@@ -1,0 +1,21 @@
+<%= form_control_wrapper do %>
+    <ol class="breadcrumb">
+      <li><a href="<%= solution_specializations_path %>"><%= t("solution_specializations.list") %></a></li>
+      <li><%= t(".header") %></li>
+    </ol>
+<% end %>
+<%= form_control_wrapper do %>
+  <label><%= SolutionSpecialization.human_attribute_name(:title) %></label>
+  </br>
+  <%= @solution_specialization.title %>
+<% end %>
+</br>
+<%= form_control_wrapper do %>
+  <label for="solution_title"><%= SolutionSpecialization.human_attribute_name(:published) %></label>
+  </br>
+    <%= @solution_specialization.published? ? t("common.published") : t("common.unpublished") %>
+<% end %>
+</br>
+<%= form_control_wrapper do %>
+  <a href="<%= edit_solution_specialization_path(@solution_specialization) %>" class="btn btn-primary" ><%= t("common.edit") %></a>
+<% end %>

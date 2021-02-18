@@ -1,0 +1,9 @@
+<div class="row">
+  <div class='col-md-12'>
+    <ol class="breadcrumb">
+      <li><a href="<%= solutions_path %>"><%= t("solutions.list") %></a></li>
+      <li><%= t("solutions.create") %></li>
+    </ol>
+  </div>
+</div>
+<%= render :partial => "solution_form", :locals => {:solution => @solution} %>

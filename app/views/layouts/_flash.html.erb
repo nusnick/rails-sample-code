@@ -1,0 +1,10 @@
+<% [:notice, :error, :alert].each do |level| %>
+  <% unless flash[level].blank? %>
+    <div class="col-md-12">
+      <div class="alert alert-dismissable alert-<%= flash_class(level) %>">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= flash[level] %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

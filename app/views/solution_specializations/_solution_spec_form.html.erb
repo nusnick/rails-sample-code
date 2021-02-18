@@ -1,0 +1,34 @@
+<%= form_errors(solution_spec) %>
+<%= simple_form_for(solution_spec, :html => {:role => 'form', :class => "solution-form" }) do |f| %>
+  <fieldset>
+    <%= form_control_wrapper do %>
+      <%= f.input :title, :input_html => { autofocus: true } %>
+    <% end %>
+
+    <div class='row'>
+      <div class='col-md-12'>
+        <div class='form-group'>
+          <%= f.label :published, :class => "control-label" %>
+          <div class='row radio no-margin-top'>
+            <div class='col-md-2'>
+              <label>
+                <%= f.radio_button :published, 1, :checked => solution_spec.published? %>
+                <%= t(".published") %>
+              </label>
+            </div>
+            <div class='col-md-2'>
+              <label>
+                <%= f.radio_button :published, 0, :checked => !solution_spec.published? %>
+                <%= t(".unpublished") %>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <%= form_control_wrapper do %>
+    <%= f.submit t(".save"), class: "btn btn-primary" %>
+    <%= button_tag t(".cancel"), type: "button", class: "btn btn-default", onclick: "window.location='#{solution_specializations_path}'" %>
+  <% end %>
+<% end %>

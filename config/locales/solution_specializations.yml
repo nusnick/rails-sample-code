@@ -1,0 +1,28 @@
+en:
+  solution_specializations:
+    list: "Solution Specializations"
+    create: "Create Specialization"
+    index:
+      spec_title: "Title"
+      author: "Author"
+      created_at: "Created At"
+      status: "Status"
+      title:
+        view: "View Solution Specialization Details"
+        edit: "Edit Solution Specialization Details"
+        delete: "Delete Solution Specialization"
+        publish: "Publish Solution Specialization"
+        unpublish: "Unpublish Solution Specialization"
+      confirm:
+        delete: "Are you sure you want to delete solution specialization %{name}?"
+        publish: "Are you sure you want to publish solution specialization %{name}?"
+        unpublish: "Are you sure you want to unpublish solution specialization %{name}?"
+    edit:
+      header: "Edit Solution Specialization"
+    show:
+      header: "View Solution Specialization"
+    solution_spec_form:
+      published: "Published"
+      unpublished: "Unpublished"
+      save: "Save"
+      cancel: "Cancel"

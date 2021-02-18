@@ -1,0 +1,41 @@
+en:
+  solutions:
+    list: "Solution List"
+    create: "Create New Solution"
+    index:
+      solution_title: "Title"
+      author: "Author"
+      favor: "Favor"
+      created_at: "Created At"
+      last_edited_at: "Last Edited At"
+      status: "Status"
+      filter: "Filter"
+      confirm:
+        publish: "Are you sure you want to publish solution %{name}?"
+        unpublish: "Are you sure you want to unpublish solution %{name}?"
+        delete: "Are you sure you want to delete solution %{name}?"
+      title:
+        view: "View Solution Details"
+        edit: "Edit Solution Details"
+        publish: "Publish Solution"
+        unpublish: "Unpublish Solution"
+        delete: "Delete Solution"
+    edit:
+      header: "Edit Solution"
+    show:
+      header: "View Solution"
+    solution_form:
+      remove_task: "Remove"
+      add_task: "Add More Task"
+      change_image: "Change"
+      save: "Save"
+      cancel: "Cancel"
+      edit: "Edit"
+      published: "Published"
+      unpublished: "Unpublished"
+      placeholder:
+        task_title: "Task title"
+
+
+
+

@@ -1,0 +1,8 @@
+<div class="row fields task-field">
+  <div class="col-md-10 col-md-offset-1">
+    <%= f.text_field :title, placeholder: t("solutions.solution_form.placeholder.task_title"), class: "form-control" %>
+  </div>
+  <div class="col-md-1">
+    <%= link_to_remove_fields t("solutions.solution_form.remove_task"), f %>
+  </div>
+</div>

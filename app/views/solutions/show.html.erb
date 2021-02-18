@@ -1,0 +1,69 @@
+<%= form_control_wrapper do %>
+  <ol class="breadcrumb">
+    <li><a href="<%= solutions_path %>"><%= t("solutions.list") %></a></li>
+    <li><%= t(".header") %></li>
+  </ol>
+<% end %>
+<%= form_control_wrapper do %>
+  <label><%= Solution.human_attribute_name(:title) %></label>
+  </br>
+  <%= @solution.title %>
+<% end %>
+</br>
+<%= form_control_wrapper do %>
+  <label for="solution_title"><%= Solution.human_attribute_name(:published) %></label>
+  </br>
+  <%= @solution.published? ? t("common.published") : t("common.unpublished") %>
+<% end %>
+</br>
+<%= form_control_wrapper do %>
+  <label for="solution_title"><%= Solution.human_attribute_name(:favor) %></label>
+  </br>
+  <%= @solution.favor %>
+<% end %>
+</br>
+<%= form_control_wrapper do %>
+  <b><%= Solution.human_attribute_name(:tasks) %></b>
+  <% @solution.tasks.each do |task| %>
+    <div class="col-md-offset-1">
+      <%= task.title %>
+    </div>
+  <% end %>
+<% end %>
+</br>
+<%= form_control_wrapper do %>
+  <b><%= Solution.human_attribute_name(:specializations) %></b>
+  <% @solution.specializations.each do |spec| %>
+    <div class="col-md-offset-1">
+      <%= spec.title %>
+    </div>
+  <% end %>
+<% end %>
+</br>
+<%= form_control_wrapper do %>
+  <b><%= Solution.human_attribute_name(:image) %></b>
+  </br>
+  <%= image_tag @solution.image.url(:thumb), size: "100x100", :class => 'solution-image' %>
+<% end %>
+<br />
+<%= form_control_wrapper do %>
+  <label><%= Solution.human_attribute_name(:teaser) %></label>
+  </br>
+  <%= @solution.teaser %>
+<% end %>
+</br>
+<%= form_control_wrapper do %>
+  <label><%= Solution.human_attribute_name(:full_text) %></label>
+  </br>
+  <%= @solution.full_text %>
+<% end %>
+</br>
+<%= form_control_wrapper do %>
+  <label><%= Solution.human_attribute_name(:author) %></label>
+  </br>
+  <%= @solution.author.name if @solution.author %>
+<% end %>
+</br>
+<%= form_control_wrapper do %>
+  <a href="<%= edit_solution_path(@solution) %>" class="btn btn-primary" type="button"><%= t("solutions.solution_form.edit") %></a>
+<% end %>
